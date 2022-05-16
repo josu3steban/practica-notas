@@ -1,7 +1,7 @@
 
 
 
-export const NotePage = () => {
+export const NotePage = ({ children }) => {
   return (
     <div className="
 
@@ -10,7 +10,7 @@ export const NotePage = () => {
         w-full
     ">
 
-      <h1>NOTA</h1>
+      {children}
 
     </div>
   )

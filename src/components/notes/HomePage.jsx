@@ -1,27 +1,23 @@
-import { NotePage } from "./NotePage"
-import { Sidebar } from "./Sidebar"
+import { Navigate, Route, Routes } from "react-router-dom"
+import { NoteForm } from "./NoteForm"
+import { NoteHomePage } from "./NoteHomePage"
+import { NotesWelcom } from "./NotesWelcom"
 
 
 export const HomePage = () => {
   return (
-    
-    <main className="
-      flex
-    ">
+    <Routes>
 
-        <div className="
+      <Route path="/" element={ <NoteHomePage /> }>
 
-          w-1/4
-        ">
-          <Sidebar />
-        </div>
-
-        <div className="w-3/4">
-          <NotePage />
-        </div>
-
+        <Route index element={ <NotesWelcom /> } />
+        <Route path="mynote/:id" element={ <NoteForm /> } />
         
-    </main>
+      </Route>
+
+      <Route path="/*" element={ <Navigate to="/" /> } />
+      
+    </Routes>
     
   )
 }
