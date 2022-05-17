@@ -1,10 +1,15 @@
 import React from 'react'
+import { NoteForm } from './NoteForm'
 
 export const NoteNew = () => {
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center max-h-screen p-5'>
 
-        <h1>NUEVA NOTA</h1>
+        <h3 className="uppercase text-my-color-two text-5xl text-center font-extrabold mb-5">Agregar una nueva nota</h3>
+
+        <div className="w-3/4 mt-10">
+          <NoteForm />
+        </div>
         
     </div>
   )

@@ -15,7 +15,7 @@ export const NoteForm = () => {
   
   return (
 
-    <section className="p-10 flex flex-col h-full ll justify-center">
+    <section className="flex flex-col justify-center">
 
       <Formik
 
@@ -60,7 +60,7 @@ export const NoteForm = () => {
                   
                 </div>
 
-                <div className="my-10">
+                <div className="my-5">
 
                   <label className="text-my-color-two block text-3xl font-medium mb-3" >Nota</label>
                   <Field
@@ -69,7 +69,7 @@ export const NoteForm = () => {
                     type="text"
                     name="content"
                     id="content"
-                    rows="10"
+                    rows="5"
                     placeholder="Descripción de la nota"
                   />
 

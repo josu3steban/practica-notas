@@ -18,7 +18,7 @@ export const NoteHomePage = () => {
         </div>
 
 
-        <div className="w-3/4">
+        <div className="w-3/4 bg-my-color-three max-h-screen">
           <NotePage>
             <Outlet />
           </NotePage>

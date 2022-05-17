@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { NoteForm } from "./NoteForm"
+import { NoteEdit } from "./NoteEdit"
 import { NoteHomePage } from "./NoteHomePage"
+import { NoteNew } from "./NoteNew"
 import { NotesWelcom } from "./NotesWelcom"
 
 
@@ -11,7 +12,8 @@ export const HomePage = () => {
       <Route path="/" element={ <NoteHomePage /> }>
 
         <Route index element={ <NotesWelcom /> } />
-        <Route path="mynote/:id" element={ <NoteForm /> } />
+        <Route path="mynote/new" element={ <NoteNew /> } />
+        <Route path="mynote/:id" element={ <NoteEdit /> } />
         
       </Route>
 

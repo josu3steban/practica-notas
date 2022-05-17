@@ -2,7 +2,7 @@ import ImgWelcome from '../../assets/img/icons/welcome.png';
 
 export const NotesWelcom = () => {
   return (
-    <section className="flex flex-col justify-center items-center p-5 h-screen">
+    <section className="flex flex-col w-full items-center justify-center h-screen p-5">
 
         <h3 className="uppercase text-my-color-two text-6xl font-extrabold">¡bienvenido!</h3>
 
