@@ -22,7 +22,7 @@ export const SignupPage = () => {
 
   
   return (
-    <div className=" flex justify-center items-center h-screen bg-[url('./assets/img/bg-login.svg')] ">
+    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-login.svg')] ">
 
       <div className="bg-white w-1/4 border-2 border-my-color-five rounded-lg p-3">
         

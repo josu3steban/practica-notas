@@ -1,10 +1,15 @@
 import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+
+
+import { startLogin } from '../../store/slices/auth';
 
 export const SigninPage = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const newLoginSchema = Yup.object().shape(
     {
@@ -13,9 +18,13 @@ export const SigninPage = () => {
     }
   );
 
-  const handleLogin = (errors, resetForm) => {
+  const handleLogin = ( values, resetForm ) => {
 
-    navigate('/');
+    const { username: email, password } = values;
+
+    dispatch( startLogin( email, password ) );
+
+    // resetForm();
 
     
   }
@@ -23,7 +32,7 @@ export const SigninPage = () => {
 
   
   return (
-    <div className=" flex justify-center items-center h-screen bg-[url('./assets/img/bg-login.svg')] ">
+    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-login.svg')] ">
 
       <div className="bg-white w-1/4 border-2 border-my-color-five rounded-lg p-3">
         
@@ -36,13 +45,13 @@ export const SigninPage = () => {
             }
           }
 
-          // validationSchema = { newLoginSchema }
+          validationSchema = { newLoginSchema }
 
           enableReinitialize = { true }
           
-          onSubmit = {( errors, {resetForm} ) => {
+          onSubmit = {( values, {resetForm} ) => {
 
-            handleLogin( errors, resetForm );
+            handleLogin( values, resetForm );
 
           }}
         
@@ -58,8 +67,8 @@ export const SigninPage = () => {
 
                   <Form>
 
-                    <div className="mb-2">
-                      <label className='block text-2xl font-medium mb'>Usuario</label>
+                    <div className="">
+                      <label className='block text-2xl font-medium mb'>Email</label>
                       <Field
                         className="w-full bg-white border-2 border-my-color-three focus:outline-none focus:border-my-color-five rounded-lg px-3 py-1 transition-all"
                         type="text"
