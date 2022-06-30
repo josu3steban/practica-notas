@@ -17,8 +17,6 @@ export const fectchWithoutToken = ( endpoint, data, method = 'GET') => {
     }else {
 
 
-        console.log(data);
-
         return fetch( url, {
             method,
             headers: {'Content-Type': 'application/json'},

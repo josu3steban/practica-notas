@@ -1,16 +1,19 @@
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
-export const PrivateRoutes = ({ children }) => {
+export const PrivateRoutes = ({ children, checking }) => {
 
-    const logged = true;
+    // const check = useSelector(state => state.auth.checking);
+
+    console.log(checking);
     
   return (
 
-    logged
+    (checking === 'checked')
         ? children
-        : <Navigate to="/auth/signin" replace/>
+        : <Navigate to="/auth/signin"/>
     
   )
 }

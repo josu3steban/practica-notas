@@ -1,15 +1,15 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import { SigninPage } from "../components/auth/SigninPage"
-import { SignupPage } from "../components/auth/SignupPage"
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
+export const PublicRoutes = ( { children, checking } ) => {
 
-export const PublicRoutes = ( { children} ) => {
+  // const check = useSelector(state => state.auth.checking);
 
-    const logged = false;
+  console.log(checking);
     
   return (
     
-    logged
+    (checking === 'checked')
         ? <Navigate to="/" />
         : children
     

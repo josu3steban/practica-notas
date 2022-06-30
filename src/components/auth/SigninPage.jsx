@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 
-import { startLogin } from '../../store/slices/auth';
+import { checking, startLogin } from '../../store/slices/auth';
 
 export const SigninPage = () => {
 
@@ -19,6 +19,8 @@ export const SigninPage = () => {
   );
 
   const handleLogin = ( values, resetForm ) => {
+
+    dispatch( checking('checking') );
 
     const { username: email, password } = values;
 
