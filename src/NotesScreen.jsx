@@ -1,11 +1,12 @@
-import React from 'react'
-import { HomePage } from './components/notes/HomePage';
-import { Header } from './components/ui/Header';
+import { BrowserRouter } from 'react-router-dom';
 import { AppRouter } from './routes/AppRouter';
 
 const NotesScreen = () => {
   return (
-    <div>
+    
+    <BrowserRouter >
+
+    
 
       {/* <Header /> */}
 
@@ -13,7 +14,7 @@ const NotesScreen = () => {
       <AppRouter />
       
       
-    </div>
+    </ BrowserRouter>
   )
 }
 

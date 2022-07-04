@@ -1,46 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-
-import { HomePage } from "../components/notes/HomePage";
-import { AuthRouter } from "./AuthRouter";
-import { PrivateRoutes } from "./PrivateRoutes";
-import { PublicRoutes } from "./PublicRoutes";
-import { useEffect } from "react";
+import { AuthRoutes } from "../components/auth/routes/AuthRoutes";
+import { NoteRoutes } from "../components/notes/routes/NoteRoutes";
 
 
 export const AppRouter = () => {
 
-    const { checking } = useSelector( state => state.auth );
-
-    useEffect( () => {
-            
-        console.log(checking);
-    
-    }, [] );
-
     
   return (
 
-    <BrowserRouter>
-    
-        <Routes>
+    <Routes>
 
-            <Route path="/auth/*" element={ 
-                <PublicRoutes checking={checking}>
-                    <AuthRouter />      
-                </PublicRoutes>
-            } />
+      //rutas publicas
+      <Route path="/auth/*" element={ <AuthRoutes /> }/>
 
-            <Route path="/*" element={
-                <PrivateRoutes checking={checking}>
-                    <HomePage />
-                </PrivateRoutes>
-            } />
-            
-        </Routes>
-    
-    </BrowserRouter>
+      //rutas provadas
+      <Route path="/*" element={ <NoteRoutes /> } />
+        
+    </Routes>
     
   )
 }
