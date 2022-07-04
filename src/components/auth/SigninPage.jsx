@@ -1,15 +1,22 @@
 import { Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 
-import { checking, startLogin } from '../../store/slices/auth';
+import { authenticating, startLogin } from '../../store/slices/auth';
 
 export const SigninPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { checking } = useSelector( state => state.auth);
+
+  const isAuthenticating = useMemo( () => checking === 'authenticating', [checking] );
+
+  console.log(isAuthenticating);
 
   const newLoginSchema = Yup.object().shape(
     {
@@ -20,10 +27,9 @@ export const SigninPage = () => {
 
   const handleLogin = ( values, resetForm ) => {
 
-    dispatch( checking('checking') );
-
     const { username: email, password } = values;
 
+    dispatch( authenticating() );
     dispatch( startLogin( email, password ) );
 
     // resetForm();
@@ -102,7 +108,8 @@ export const SigninPage = () => {
                     <div className="">
                       <button
                         type="submit"
-                        className="w-full py-2 px-3 rounded-lg text-my-color-two text-xl bg-my-color-five animate-pulse">
+                        disabled={ isAuthenticating }
+                        className={`w-full py-2 px-3 rounded-lg text-my-color-two text-xl bg-my-color-five ${ !isAuthenticating ? 'animate-pulse' : ''} `}>
 
                         {`INICIAR SESIÓN`}
                         

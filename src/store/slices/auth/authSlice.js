@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    checking: "not-checked", //not-checked, checking, checked
-    uid: null,
-    name: null,
-    email: null,
+    checking: "cheking", //not-authenticated, authenticating, authenticated
+    uid     : null,
+    name    : null,
+    email   : null,
+    img     : null
 }
 
 
@@ -16,34 +17,37 @@ export const authSlice = createSlice({
 
     reducers: {
 
-        checking: ( state, action ) => {
+        authenticating: ( state, action ) => {
 
-            state.checking = action.payload;
+            state.checking = 'authenticating';
             
         },
 
         login: ( state, action ) => {
 
-            state.uid = action.payload.uid;
-            state.name = action.payload.name,
+            console.log('actionnnn', action)
+
+            state.checking = 'authenticated'
+            
+            state.uid   = action.payload.uid;
+            state.name  = action.payload.name,
             state.email = action.payload.email;
-            state.img = action.payload.img ?? "";
+            state.img   = action.payload.img ?? "";
 
         },
 
         logout: ( state ) => {
 
+            state.checking = 'not-authenticated'
             
+            state.uid   = null;
+            state.name  = null,
+            state.email = null;
+            state.img   = null;
             
         },
 
-        checking: ( state, action ) => {
-
-            state.checking = action.payload;
-            
-        }
-        
     }
 });
 
-export const { login, logout, checking } = authSlice.actions;
+export const { login, logout, authenticating } = authSlice.actions;
