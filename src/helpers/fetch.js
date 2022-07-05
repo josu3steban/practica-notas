@@ -16,7 +16,6 @@ export const fectchWithoutToken = ( endpoint, data, method = 'GET') => {
         
     }else {
 
-
         return fetch( url, {
             method,
             headers: {'Content-Type': 'application/json'},
@@ -45,7 +44,7 @@ export const fectchWithToken = (endpoint, data, method = 'GET') => {
                 'Authorization': localStorage.getItem('token')
             }
         });
-        
+
     }else {
 
         return fetch({

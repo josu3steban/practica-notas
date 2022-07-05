@@ -30,12 +30,16 @@ export const AppRouter = () => {
 
     <Routes>
 
-      {/* rutas publicas */}
-      <Route path="/auth/*" element={ <AuthRoutes /> }/>
+      {
 
-      {/* rutas provadas */}
-      <Route path="/*" element={ <NoteRoutes /> } />
+        ( checking === 'not-authenticated' )
+          ? <Route path="/auth/*" element={ <AuthRoutes /> }/>
+          : <Route path="/*" element={ <NoteRoutes /> } />
         
+      }
+
+      <Route path="/*" element={ <AuthRoutes /> } />
+
     </Routes>
     
   )

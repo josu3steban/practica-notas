@@ -15,8 +15,6 @@ export const checkingLogin = () => {
 
         if( body.ok ) {
 
-            console.log(body);
-            
             localStorage.setItem('token', body.token);
             
             dispatch( login(body) );
@@ -26,22 +24,6 @@ export const checkingLogin = () => {
             dispatch( logout() );
             
         }
-        // else {
-
-        //     const errors = body.errors ?? "";
-
-        //     const error = body.error ?? "";
-
-        //     dispatch( logout() );
-
-        //     Swal.fire({
-        //         title   : 'Error',
-        //         text    : errors.errors.map(err => err.msg),
-        //         icon    : 'error',
-        //         confirmButtonText: 'Aceptar'
-        //     });
-
-        // }
         
     }
 
@@ -63,9 +45,6 @@ export const startLogin = ( email, password ) => {
 
         
         if( body.ok ) {
-
-
-            console.log(body);
 
             localStorage.setItem('token', body.token);
 
@@ -91,3 +70,46 @@ export const startLogin = ( email, password ) => {
     }
     
 };
+
+export const startRegister = ( {name, username, password} ) => {
+
+    return async( dispatch ) => {
+
+        const data = { name, email: username, password };
+
+        const response = await fectchWithoutToken( 'user/signup', data, 'POST' );
+        const body     = await response.json();
+
+        if( body.ok ) {
+
+            Swal.fire({
+                title   : 'Usuario creado correctamente!',
+                icon    : 'success',
+                confirmButtonText: 'Aceptar',
+            });
+
+            dispatch( logout() );
+            
+            // localStorage.setItem('token', body.token);
+
+            // dispatch( login( body.user ) );
+
+        } else {
+
+            const errors = body.errors ?? "";
+
+            const error = body.error ?? "";
+
+            dispatch( logout() );
+
+            Swal.fire({
+                title   : 'Error',
+                text    : !!errors ? errors.errors.map(err => err.msg) : error.msg,
+                icon    : 'error',
+                confirmButtonText: 'Aceptar'
+            });
+
+        }
+    }
+
+}

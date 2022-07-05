@@ -12,9 +12,9 @@ export const SigninPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { checking } = useSelector( state => state.auth);
+  const { status } = useSelector( state => state.auth);
 
-  const isAuthenticating = useMemo( () => checking === 'authenticating', [checking] );
+  const isAuthenticating = useMemo( () => status === 'authenticating', [status] );
 
   console.log(isAuthenticating);
 

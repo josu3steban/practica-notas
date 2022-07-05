@@ -1,22 +1,31 @@
 import { Field, Form, Formik } from 'formik';
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { authenticating, startRegister } from '../../store/slices/auth';
 
 export const SignupPage = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { status } = useSelector( state => state.auth);
+  const isAuthenticating = useMemo( () => status === 'authenticating', [status] );
 
   const newLoginSchema = Yup.object().shape(
     {
+      name  : Yup.string().required('Ingrese un nombre'),
       username: Yup.string().email('Email no valido').required('Debe de ingresar un email'),
       password: Yup.string().required('Debe ingresar la contraseña').min(6, 'La contraseña debe tener al menos 6 caracteres').max(15, 'La contraseña debe tener como maximo 15 caracteres')
     }
   );
 
-  const handleLogin = (errors, resetForm) => {
+  const handleSignup = (values, resetForm) => {
 
+    dispatch( authenticating() );
+    dispatch( startRegister(values) );
 
-    
   }
 
 
@@ -30,6 +39,7 @@ export const SignupPage = () => {
         
           initialValues={ 
             {
+              name: "",
               username: "",
               password: ""
             }
@@ -39,9 +49,9 @@ export const SignupPage = () => {
 
           enableReinitialize = { true }
           
-          onSubmit = {( errors, {resetForm} ) => {
+          onSubmit = {( values, {resetForm} ) => {
 
-            handleLogin( errors, resetForm );
+            handleSignup( values, resetForm );
 
           }}
         
@@ -58,13 +68,29 @@ export const SignupPage = () => {
                   <Form>
 
                     <div className="mb-2">
+                      <label className='block text-2xl font-medium mb'>Nombre</label>
+                      <Field
+                        className="w-full bg-white border-2 border-my-color-three focus:outline-none focus:border-my-color-five rounded-lg px-3 py-1 transition-all"
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Ej. Juanito Garcias"
+                      />
+                      {
+                        (errors.name && touched.name )
+                          ? <span className="uppercase block text-sm text-my-color-four">{ errors.name }</span>
+                          : <span className="uppercase block text-sm text-transparent">null</span>
+                      }
+                    </div>
+
+                    <div className="mb-2">
                       <label className='block text-2xl font-medium mb'>Correo</label>
                       <Field
                         className="w-full bg-white border-2 border-my-color-three focus:outline-none focus:border-my-color-five rounded-lg px-3 py-1 transition-all"
                         type="text"
                         name="username"
                         id="username"
-                        placeholder="Ingresa tu correo"
+                        placeholder="Ej. correo@correo.com"
                       />
                       {
                         (errors.username && touched.username )
@@ -92,7 +118,7 @@ export const SignupPage = () => {
                     <div className="">
                       <button
                         type="submit"
-                        className="w-full py-2 px-3 rounded-lg text-my-color-two text-xl bg-my-color-five animate-pulse">
+                        className={`w-full py-2 px-3 rounded-lg text-my-color-two text-xl bg-my-color-five ${ !isAuthenticating ? 'animate-pulse' : ''} `}>
 
                         {`REGISTRARSE`}
                         
