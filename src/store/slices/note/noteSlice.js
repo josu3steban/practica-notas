@@ -30,7 +30,7 @@ export const noteSlice = createSlice({
 
     updateNote: ( state, action ) => {
 
-      state.notes = action.payload.map( note => ( !note.id === state.activeNote ) ?? action.payload );
+      state.notes = action.payload.map( note => ( !note.id === state.activeNote ) ? note : action.payload );
 
       state.activeNote = null;
       
@@ -55,10 +55,16 @@ export const noteSlice = createSlice({
       state.notes = [];
       state.activeNote = null;
       
+    },
+
+    cleanActiveNote: ( state ) => {
+
+      state.activeNote = null;
+      
     }
     
   }
 
 });
 
-export const { setActiveNote, addNewNote, updateNote, deleteNote, loadNotes, cleanNotes } = noteSlice.actions;
+export const { setActiveNote, addNewNote, updateNote, deleteNote, loadNotes, cleanNotes, cleanActiveNote } = noteSlice.actions;

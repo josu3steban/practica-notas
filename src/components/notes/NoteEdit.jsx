@@ -1,7 +1,22 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom'
+import { setActiveNote } from '../../store/slices/note/noteSlice';
 import { NoteForm } from './NoteForm'
 
 export const NoteEdit = () => {
+
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  // console.log(!!id);
+
+  if( !!id ) {
+
+    dispatch( setActiveNote( id ) );
+    
+  }
+  
   return (
     <div className='flex flex-col items-center justify-center max-h-screen p-5'>
 

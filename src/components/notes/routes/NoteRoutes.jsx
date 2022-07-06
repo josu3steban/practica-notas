@@ -1,8 +1,11 @@
-import { Navigate, Route, Routes } from "react-router-dom"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import { NoteHomePage, NotesWelcom, NoteNew, NoteEdit } from "../"
 
 
 export const NoteRoutes = () => {
+
   return (
     <Routes>
 

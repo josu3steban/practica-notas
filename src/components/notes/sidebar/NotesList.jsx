@@ -1,15 +1,19 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setActiveNote } from "../../../store/slices/note/noteSlice";
 
 
 export const NotesList = ( {note} ) => {
 
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
 
   const dateFormat = new Date(note.create);
 
   const handleSelectNote = ( id ) => {
 
+    dispatch( setActiveNote( id ) );
+    
     navigate( `/mynote/${id}` );
     
   }

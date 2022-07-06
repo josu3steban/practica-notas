@@ -5,6 +5,7 @@ import { AuthRoutes } from "../components/auth/routes/AuthRoutes";
 import { NoteRoutes } from "../components/notes/routes/NoteRoutes";
 import { LoadingPage } from "../components/ui/LoadingPage";
 import { checkingLogin } from "../store/slices/auth";
+import { cleanActiveNote } from "../store/slices/note/noteSlice";
 
 
 export const AppRouter = () => {

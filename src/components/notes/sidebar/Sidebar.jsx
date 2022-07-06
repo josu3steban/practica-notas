@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/slices/auth";
-import { cleanNotes } from "../../../store/slices/note/noteSlice";
+import { cleanActiveNote, cleanNotes } from "../../../store/slices/note/noteSlice";
 
 
 export const Sidebar = () => {
@@ -18,6 +18,7 @@ export const Sidebar = () => {
 
   const handleNewNote = () => {
 
+    dispatch( cleanActiveNote() );
     navigate( '/mynote/newnote' );
     
   }
@@ -59,7 +60,7 @@ export const Sidebar = () => {
         ">
 
 
-          <header onClick={ () => navigate('/') } className="p-2 cursor-pointer">
+          <header onClick={ () => { dispatch(cleanActiveNote()); navigate('/'); } } className="p-2 cursor-pointer">
             <p className="w-full block uppercase mr-5 text-lg" >bienvenido <span className="text-my-color-five font-medium">{ name }</span></p>
           </header>
 
