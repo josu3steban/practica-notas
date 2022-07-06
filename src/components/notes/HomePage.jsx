@@ -12,7 +12,7 @@ export const HomePage = () => {
       <Route path="/" element={ <NoteHomePage /> }>
 
         <Route index element={ <NotesWelcom /> } />
-        <Route path="mynote/new" element={ <NoteNew /> } />
+        <Route path="mynote/newnote" element={ <NoteNew /> } />
         <Route path="mynote/:id" element={ <NoteEdit /> } />
         
       </Route>

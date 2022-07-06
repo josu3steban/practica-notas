@@ -24,7 +24,7 @@ export const noteSlice = createSlice({
 
     addNewNote: ( state, action ) => {
 
-      state.notes = action.payload;
+      state.notes.push( action.payload );
       
     },
 
@@ -48,10 +48,17 @@ export const noteSlice = createSlice({
 
       state.notes = action.payload;
       
+    },
+
+    cleanNotes: ( state ) => {
+
+      state.notes = [];
+      state.activeNote = null;
+      
     }
     
   }
 
 });
 
-export const { setActiveNote, addNewNote,updateNote, deleteNote, loadNotes } = noteSlice.actions;
+export const { setActiveNote, addNewNote, updateNote, deleteNote, loadNotes, cleanNotes } = noteSlice.actions;

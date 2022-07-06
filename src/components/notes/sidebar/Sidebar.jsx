@@ -5,17 +5,20 @@ import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/slices/auth";
+import { cleanNotes } from "../../../store/slices/note/noteSlice";
 
 
 export const Sidebar = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { name } = useSelector( state => state.auth );
+  
 
   const handleNewNote = () => {
 
-    navigate( '/mynote/new' );
+    navigate( '/mynote/newnote' );
     
   }
 
@@ -35,6 +38,7 @@ export const Sidebar = () => {
         
         localStorage.removeItem('token');
         dispatch( logout() );
+        dispatch( cleanNotes() );
         
       }
     })

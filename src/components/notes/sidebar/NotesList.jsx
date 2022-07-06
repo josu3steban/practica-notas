@@ -6,6 +6,8 @@ export const NotesList = ( {note} ) => {
   const navigate = useNavigate();
   
 
+  const dateFormat = new Date(note.create);
+
   const handleSelectNote = ( id ) => {
 
     navigate( `/mynote/${id}` );
@@ -15,7 +17,7 @@ export const NotesList = ( {note} ) => {
   return (
     
     <div
-      onClick={ () => handleSelectNote(note.id) }
+      onClick={ () => handleSelectNote(note._id) }
 
       className="
 
@@ -32,8 +34,8 @@ export const NotesList = ( {note} ) => {
     ">
 
         <h3 className="text-lg font-medium">{note.title}</h3>
-        <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quasi delectus corrupti magni at eligendi!</p>
-        <p className="text-xs text-left text-gray-500 w-full pt-3">creada: 00/00/0000</p>
+        <p className="text-sm">{ note.description }</p>
+        <p className="text-xs text-left text-gray-500 w-full pt-3">creada: { `${dateFormat.getDate()}/${dateFormat.getMonth() + 1}/${dateFormat.getFullYear()} - ${dateFormat.getHours()}h:${dateFormat.getMinutes()}`}</p>
         
     </div>
     

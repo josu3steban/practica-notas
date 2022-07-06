@@ -13,6 +13,8 @@ export const checkingLogin = () => {
         const response = await fectchWithToken('auth/revalidate', 'GET');
         const body = await response.json();
 
+        console.log(body)
+        
         if( body.ok ) {
 
             localStorage.setItem('token', body.token);

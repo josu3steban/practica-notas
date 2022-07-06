@@ -35,23 +35,27 @@ export const fectchWithToken = (endpoint, data, method = 'GET') => {
     //contruir la url completa
     const url = `${baseUrl}/${endpoint}`;
 
+    console.log(url)
+
+    console.log(JSON.stringify( data ))
+
     if( method === 'GET' ) {
 
         return fetch( url, {
             method,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token')
+                'Authorization': localStorage.getItem('token') || ""
             }
         });
 
     }else {
 
-        return fetch({
+        return fetch(url, {
             method,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token')
+                'Authorization': localStorage.getItem('token') || ""
             },
             body: JSON.stringify( data )
         });

@@ -1,5 +1,7 @@
+import { useSelector, useDispatch } from "react-redux";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { startAddNewNote } from "../../store/slices/note/noteThunk";
 
 export const NoteForm = () => {
 
@@ -8,8 +10,29 @@ export const NoteForm = () => {
     content: Yup.string().required("El contenido es requerido").min(5, "El contenido debe tener al menos 5 caracteres").max(500, "El contenido debe tener como maximo 500 caracteres"),	
   });
 
+
+
+  const dispatch = useDispatch();
+  const { activeNote } = useSelector( state => state.note );
+  
   const handleSubmit = ( values, reset ) => {
 
+    const note = {
+      title       : values.title,
+      description : values.content,
+    }
+    
+    if( !!!activeNote ) {
+
+      dispatch( startAddNewNote( note ) );
+
+    } else {
+
+
+      
+    }
+
+    
 
   }
   
