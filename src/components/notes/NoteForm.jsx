@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { startAddNewNote } from "../../store/slices/note/noteThunk";
+import { startAddNewNote, startDeleteNote, updateNote } from "../../store/slices/note/noteThunk";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 export const NoteForm = () => {
 
@@ -11,9 +13,36 @@ export const NoteForm = () => {
   });
 
 
-
   const dispatch = useDispatch();
-  const { activeNote } = useSelector( state => state.note );
+  const navigate = useNavigate();
+
+  const { activeNote, notes } = useSelector( state => state.note );
+  const { id } = useParams();
+  const { pathname } = useLocation()
+
+  console.log(pathname.split('/')[1]);
+
+  useEffect( () => {
+
+    if(!activeNote && !(pathname.split('/')[2] === 'newnote')){
+      navigate('/');
+    }
+    
+
+  }, [activeNote]);
+  
+
+  let note = {};
+
+
+  if( !!activeNote ) {
+
+    console.log('ENTROOOOOOOOOOOOOO', notes);
+
+    note = notes.find( note => note._id === activeNote);
+    
+  }
+
   
   const handleSubmit = ( values, reset ) => {
 
@@ -22,18 +51,23 @@ export const NoteForm = () => {
       description : values.content,
     }
     
-    if( !!!activeNote ) {
+    if( !activeNote ) {
 
       dispatch( startAddNewNote( note ) );
+      navigate( '/' );
 
     } else {
 
-
+      dispatch( updateNote(activeNote, note) );
+      navigate( '/' );
       
     }
+  }
 
+  const handleDelete = () => {
+
+    dispatch( startDeleteNote( activeNote ) );
     
-
   }
   
   return (
@@ -43,8 +77,10 @@ export const NoteForm = () => {
       <Formik
 
         initialValues={{
-          title: "",
-          content: ""
+          title: (!!activeNote) ? note.title : "",
+          content: (!!activeNote) ? note.description : ""
+          // title: "",
+          // content:""
         }}
 
         validationSchema={ newNoteSchema }
@@ -104,6 +140,16 @@ export const NoteForm = () => {
                 </div>
 
                 <div className="text-right">
+
+                  <button
+                    type="button"
+                    onClick={ handleDelete }
+                    className={` ${!activeNote ? 'hidden' : ''} py-2 px-3 mr-5 rounded-lg text-my-color-two text-xl bg-my-color-five animate-pulse`}>
+
+                    {`ELIMINAR`}
+                    
+                  </button>
+                  
                   <button
                     type="submit"
                     className="py-2 px-3 rounded-lg text-my-color-two text-xl bg-my-color-five animate-pulse">

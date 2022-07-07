@@ -26,8 +26,6 @@ export const authSlice = createSlice({
 
         login: ( state, action ) => {
 
-            console.log('actionnnn', action)
-
             state.checking = 'authenticated';
             state.status = 'complete';
             

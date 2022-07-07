@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setActiveNote } from "../../../store/slices/note/noteSlice";
+import { getNoteById } from "../../../store/slices/note/noteThunk";
 
 
 export const NotesList = ( {note} ) => {
@@ -13,8 +14,12 @@ export const NotesList = ( {note} ) => {
   const handleSelectNote = ( id ) => {
 
     dispatch( setActiveNote( id ) );
+
+    // dispatch( getNoteById( id ) );
     
-    navigate( `/mynote/${id}` );
+    // navigate( `/mynote/${id}` );
+
+    navigate( `/mynote/viewnote` );
     
   }
   
@@ -25,6 +30,15 @@ export const NotesList = ( {note} ) => {
 
       className="
 
+        sm:w-52
+        sm:h-full
+        sm:justify-between
+        sm:break-words
+        sm:mr-3
+        sm:mb-0
+        sm:overflow-x-visible
+        sm:flex-shrink-0
+        
         bg-white
         rounded-lg
         border-2
@@ -35,11 +49,18 @@ export const NotesList = ( {note} ) => {
         flex-col
         items-center
         mb-3
+
+        h-40
+        overflow-y-auto
+
+        break-words
+        
+        
     ">
 
-        <h3 className="text-lg font-medium">{note.title}</h3>
-        <p className="text-sm">{ note.description }</p>
-        <p className="text-xs text-left text-gray-500 w-full pt-3">creada: { `${dateFormat.getDate()}/${dateFormat.getMonth() + 1}/${dateFormat.getFullYear()} - ${dateFormat.getHours()}h:${dateFormat.getMinutes()}`}</p>
+        <h3 className="text-lg font-medium sm:text-center">{note.title}</h3>
+        <p className="text-sm w-full sm:w-full sm:text-center">{ note.description }</p>
+        <p className="text-xs text-left text-gray-500 pt-3 w-full sm:w-full">creada: { `${dateFormat.getDate()}/${dateFormat.getMonth() + 1}/${dateFormat.getFullYear()} - ${dateFormat.getHours()}h:${dateFormat.getMinutes()}`}</p>
         
     </div>
     

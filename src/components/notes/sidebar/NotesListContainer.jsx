@@ -11,7 +11,7 @@ export const NoteListContainer = () => {
 
   return (
 
-    <main className="p-2">
+    <main className="sm:flex sm:h-full  sm:w-screen p-2">
 
       {
         notes.map( note => (

@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   notes: [],
+  note: {},
   activeNote: null
 }
 
@@ -19,6 +20,7 @@ export const noteSlice = createSlice({
     setActiveNote: ( state, action ) => {
 
       state.activeNote = action.payload;
+      // state.note = action.payload.note;
       
     },
 
@@ -28,9 +30,9 @@ export const noteSlice = createSlice({
       
     },
 
-    updateNote: ( state, action ) => {
+    editeNote: ( state, action ) => {
 
-      state.notes = action.payload.map( note => ( !note.id === state.activeNote ) ? note : action.payload );
+      state.notes = state.notes.map( note => (note._id !== action.payload.noteId) ? note : action.payload.noteUpdated );
 
       state.activeNote = null;
       
@@ -38,7 +40,7 @@ export const noteSlice = createSlice({
 
     deleteNote: ( state, action ) => {
 
-      state.notes = action.payload.filter( note => note.id !== state.activeNote );
+      state.notes = state.notes.filter( note => note._id !== action.payload );
 
       state.activeNote = null;
       
@@ -67,4 +69,4 @@ export const noteSlice = createSlice({
 
 });
 
-export const { setActiveNote, addNewNote, updateNote, deleteNote, loadNotes, cleanNotes, cleanActiveNote } = noteSlice.actions;
+export const { setActiveNote, addNewNote, editeNote, deleteNote, loadNotes, cleanNotes, cleanActiveNote } = noteSlice.actions;

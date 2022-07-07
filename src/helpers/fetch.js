@@ -35,10 +35,6 @@ export const fectchWithToken = (endpoint, data, method = 'GET') => {
     //contruir la url completa
     const url = `${baseUrl}/${endpoint}`;
 
-    console.log(url)
-
-    console.log(JSON.stringify( data ))
-
     if( method === 'GET' ) {
 
         return fetch( url, {
