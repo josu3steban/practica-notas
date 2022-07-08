@@ -31,9 +31,9 @@ export const SignupPage = () => {
 
   
   return (
-    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-login.svg')] ">
+    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-auth.jpg')] backdrop-blur-xl">
 
-      <div className="sm:w-2/4 bg-white w-1/4 border-2 border-my-color-five rounded-lg p-3">
+      <div className="sm:w-5/6 bg-my-color-two/50 w-1/4 border-2 border-my-color-five rounded-lg p-3 animate__animated animate__bounce animate__fadeIn animate__faster">
         
         <Formik
         

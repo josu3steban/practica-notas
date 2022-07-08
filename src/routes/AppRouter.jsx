@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthRoutes } from "../components/auth/routes/AuthRoutes";
 import { NoteRoutes } from "../components/notes/routes/NoteRoutes";
 import { LoadingPage } from "../components/ui/LoadingPage";
+import { Spinner } from "../components/ui/Spinner";
 import { checkingLogin } from "../store/slices/auth";
 import { cleanActiveNote } from "../store/slices/note/noteSlice";
 
@@ -22,7 +23,7 @@ export const AppRouter = () => {
 
   if( checking === 'cheking' ) {
 
-    return <LoadingPage />
+    return <Spinner />
     
   }
   

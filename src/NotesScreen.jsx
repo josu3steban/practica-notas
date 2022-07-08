@@ -6,13 +6,7 @@ const NotesScreen = () => {
     
     <BrowserRouter >
 
-    
-
-      {/* <Header /> */}
-
-
       <AppRouter />
-      
       
     </ BrowserRouter>
   )

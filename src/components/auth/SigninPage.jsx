@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
+import BgImg from '../../assets/img/bg-auth.jpg';
+
 
 import { authenticating, startLogin } from '../../store/slices/auth';
 
@@ -37,16 +39,15 @@ export const SigninPage = () => {
     
   }
 
-
+  // bg-[url('./assets/img/bg-login.svg')]
   
   return (
-    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-login.svg')] ">
+    <div className=" flex justify-center items-center h-screen bg-cover bg-[url('./assets/img/bg-auth.jpg')] ">
 
       <div className="
-
-        sm:w-2/4
-      
-        bg-white 
+        bg-my-color-two/50
+        sm:w-5/6
+        animate__animated animate__bounce animate__fadeIn animate__faster
         w-1/4 
         border-2 
         border-my-color-five 

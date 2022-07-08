@@ -3,8 +3,7 @@
 
 export const NotePage = ({ children }) => {
   return (
-    <div className="
-    ">
+    <div className=" ">
 
       {children}
 

@@ -32,7 +32,7 @@ export const NoteEdit = () => {
   
   
   return (
-    <div className='flex flex-col items-center justify-center max-h-screen p-5'>
+    <div className='flex flex-col items-center justify-center max-h-screen p-5 animate__animated animate__bounceInLeft animate__faster'>
 
         <h3 className="uppercase text-my-color-two text-5xl text-center font-extrabold mb-5">Edita tu nota</h3>
 

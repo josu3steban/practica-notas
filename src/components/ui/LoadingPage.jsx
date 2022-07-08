@@ -5,7 +5,9 @@ export const LoadingPage = () => {
   return (
 
 
-    <h1>COMPROBANDO AUTENTICACION...</h1>
+    <div className="animate-ping">
+      <h1>Espere...</h1>
+    </div>
     
     
   )

@@ -139,7 +139,7 @@ export const NoteForm = () => {
                   
                 </div>
 
-                <div className="text-right">
+                <div className="text-right sm:flex sm:justify-end ">
 
                   <button
                     type="button"

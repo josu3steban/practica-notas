@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Outlet } from "react-router-dom";
+
+import 'animate.css';
+
 import { startLoadNotes } from "../../store/slices/note/noteThunk";
 import { NotePage } from "./NotePage";
 import { Sidebar } from "./sidebar/Sidebar";
@@ -57,10 +60,10 @@ export const NoteHomePage = () => {
       flex
       h-screen
       sm:flex-col
-      
+      sm:box-border
     ">
 
-        <div className={`md:hidden w-full sm:flex sm:justify-end sm:items-center ${menu ? ' bg-my-color-three' : ' bg-my-color-two'}`}>
+        <div className={`md:hidden w-full sm:flex sm:justify-end sm:items-center transition-all duration-700 ${menu ? ' bg-my-color-three' : ' bg-my-color-two'}`}>
             <div className={`mr-5 `}>
                 <button
                     id='icon-menu'
@@ -82,7 +85,6 @@ export const NoteHomePage = () => {
         <div className={`
 
           sm:w-full
-
           sm:overflow-hidden
           ${menu ? ' sm:h-0' : ' sm:h-2/6'}
           transition-all
@@ -95,7 +97,7 @@ export const NoteHomePage = () => {
         </div>
 
 
-        <div className={` sm:w-full w-3/4 bg-my-color-three ${menu ? ' sm:h-screen' : ' sm:h-4/6'} transition-all duration-500`}>
+        <div className={` sm:w-full w-3/4 bg-my-color-three ${menu ? ' sm:h-full sm:flex sm:items-center' : ' sm:h-4/6'} transition-all duration-500 overflow-hidden`}>
           <NotePage>
             <Outlet />
           </NotePage>
