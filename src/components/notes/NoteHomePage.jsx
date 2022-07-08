@@ -61,6 +61,7 @@ export const NoteHomePage = () => {
       h-screen
       sm:flex-col
       sm:box-border
+      
     ">
 
         <div className={`md:hidden w-full sm:flex sm:justify-end sm:items-center transition-all duration-700 ${menu ? ' bg-my-color-three' : ' bg-my-color-two'}`}>
@@ -97,7 +98,7 @@ export const NoteHomePage = () => {
         </div>
 
 
-        <div className={` sm:w-full w-3/4 bg-my-color-three ${menu ? ' sm:h-full sm:flex sm:items-center' : ' sm:h-4/6'} transition-all duration-500 overflow-hidden`}>
+        <div className={` sm:w-full w-3/4 bg-my-color-three ${menu ? ' sm:h-full sm:flex sm:items-center' : ' sm:h-4/6'} transition-all duration-500 overflow-y-scroll`}>
           <NotePage>
             <Outlet />
           </NotePage>
