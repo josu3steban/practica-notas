@@ -76,7 +76,7 @@ export const Sidebar = () => {
           <div className="flex sm:h-full sm:flex-row sm:w-screen min-h-0 flex-col">
 
             <section onClick={ handleNewNote } className="flex sm:gap-y-0  sm:flex-col sm:justify-center sm:shadow-md sm:border-my-color-five sm:w-1/4  items-center gap-5 hover:shadow-md border-2 border-transparent hover:border-my-color-five p-2 rounded-md transition-all duration-300 cursor-pointer m-2">
-              <div className=" sm:w-4/6 w-1/5">
+              <div className=" sm:w-z w-1/5">
                 <img className="w-full" src={ IconNewNote } alt="Icono nueva nota" />
               </div>
 
